@@ -13,6 +13,7 @@ public:
 	virtual void Render(sf::RenderTarget& _renderTarget) = 0;
 
 	inline void SetColor(sf::Color _newColor) { m_color = _newColor; }
+	inline sf::Color GetColor() const { return m_color; }
 
 protected:
 	sf::Color m_color = sf::Color();

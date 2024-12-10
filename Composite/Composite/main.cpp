@@ -83,9 +83,13 @@ int main()
 		ImGui::DragFloat("Angle", &pRotation, 0.1f, 0.f, 800.f, "%.1f");
 		p->transform->SetRotation(pRotation);
 
-		float igColor[4];
+		sf::Color pColor = p->GetComponent<RenderComponent>()->GetColor();
+		float igColor[4]{ static_cast<float>(pColor.r) / 255.f, static_cast<float>(pColor.g) / 255.f, static_cast<float>(pColor.b) / 255.f, static_cast<float>(pColor.a) / 255.f };
 		ImGui::Text("Color : ");
-		ImGui::ColorEdit4("asas", igColor);
+		ImGui::PushItemWidth(255.f);
+		ImGui::ColorEdit4("RGBA", igColor, ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_NoInputs);
+		sf::Color pNewColor = sf::Color(static_cast<sf::Uint8>(igColor[0] * 255.f), static_cast<sf::Uint8>(igColor[1] * 255.f), static_cast<sf::Uint8>(igColor[2] * 255.f), static_cast<sf::Uint8>(igColor[3] * 255.f));
+		p->GetComponent<RenderComponent>()->SetColor(pNewColor);
 
 
 		ImGui::End();
