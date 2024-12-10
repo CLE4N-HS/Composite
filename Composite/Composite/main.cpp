@@ -40,11 +40,12 @@ int main()
 		while (window.pollEvent(sfEvent))
 		{
 			ImGui::SFML::ProcessEvent(window, sfEvent);
-
 			if (sfEvent.type == sf::Event::Closed ||
 				sf::Mouse::isButtonPressed(sf::Mouse::Middle))
 				window.close();
 		}
+
+
 
 		// ImGui
 		ImGui::SFML::Update(window, deltaClock.restart());
@@ -65,16 +66,16 @@ int main()
 		sf::Vector2f pPos = p->transform->GetPos();
 		ImGui::Text("Position :");
 		ImGui::PushItemWidth(100.f);
-		ImGui::DragFloat("X", &pPos.x, 0.1f, 0.f, 800.f, "%.1f");
+		ImGui::DragFloat("posX", &pPos.x, 0.1f, 0.f, 800.f, "%.1f");
 		ImGui::SameLine();
-		ImGui::DragFloat("Y", &pPos.y, 0.1f, 0.f, 800.f, "%.1f");
+		ImGui::DragFloat("posY", &pPos.y, 0.1f, 0.f, 800.f, "%.1f");
 		p->transform->SetPos(pPos);
 
 		sf::Vector2f pScale = p->transform->GetScale();
 		ImGui::Text("Scale : ");
-		ImGui::DragFloat("X", &pScale.x, 0.1f, 0.f, 800.f, "%.1f");
+		ImGui::DragFloat("scaleX", &pScale.x, 0.1f, 0.f, 800.f, "%.1f");
 		ImGui::SameLine();
-		ImGui::DragFloat("Y", &pScale.y, 0.1f, 0.f, 800.f, "%.1f");
+		ImGui::DragFloat("scaleY", &pScale.y, 0.1f, 0.f, 800.f, "%.1f");
 		p->transform->SetScale(pScale);
 		
 		float pRotation = p->transform->GetRotation();
@@ -82,8 +83,23 @@ int main()
 		ImGui::DragFloat("Angle", &pRotation, 0.1f, 0.f, 800.f, "%.1f");
 		p->transform->SetRotation(pRotation);
 
+		sf::Color pColor = p->GetComponent<RenderComponent>()->GetColor();
+		float igColor[4]{ static_cast<float>(pColor.r) / 255.f, static_cast<float>(pColor.g) / 255.f, static_cast<float>(pColor.b) / 255.f, static_cast<float>(pColor.a) / 255.f };
+		ImGui::Text("Color : ");
+		ImGui::PushItemWidth(255.f);
+		ImGui::ColorEdit4("RGBA", igColor, ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_NoInputs);
+		sf::Color pNewColor = sf::Color(static_cast<sf::Uint8>(igColor[0] * 255.f), static_cast<sf::Uint8>(igColor[1] * 255.f), static_cast<sf::Uint8>(igColor[2] * 255.f), static_cast<sf::Uint8>(igColor[3] * 255.f));
+		p->GetComponent<RenderComponent>()->SetColor(pNewColor);
+
 
 		ImGui::End();
+
+
+	
+
+
+
+
 
 
 		// Update every entity components
@@ -95,8 +111,8 @@ int main()
 		newScene->Render(window);
 
 
-		window.display();
 		ImGui::SFML::Render(window);
+		window.display();
 	}
 
 	ImGui::SFML::Shutdown(window);
