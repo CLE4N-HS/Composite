@@ -40,11 +40,12 @@ int main()
 		while (window.pollEvent(sfEvent))
 		{
 			ImGui::SFML::ProcessEvent(window, sfEvent);
-
 			if (sfEvent.type == sf::Event::Closed ||
 				sf::Mouse::isButtonPressed(sf::Mouse::Middle))
 				window.close();
 		}
+
+
 
 		// ImGui
 		ImGui::SFML::Update(window, deltaClock.restart());
@@ -65,16 +66,16 @@ int main()
 		sf::Vector2f pPos = p->transform->GetPos();
 		ImGui::Text("Position :");
 		ImGui::PushItemWidth(100.f);
-		ImGui::DragFloat("X", &pPos.x, 0.1f, 0.f, 800.f, "%.1f");
+		ImGui::DragFloat("posX", &pPos.x, 0.1f, 0.f, 800.f, "%.1f");
 		ImGui::SameLine();
-		ImGui::DragFloat("Y", &pPos.y, 0.1f, 0.f, 800.f, "%.1f");
+		ImGui::DragFloat("posY", &pPos.y, 0.1f, 0.f, 800.f, "%.1f");
 		p->transform->SetPos(pPos);
 
 		sf::Vector2f pScale = p->transform->GetScale();
 		ImGui::Text("Scale : ");
-		ImGui::DragFloat("X", &pScale.x, 0.1f, 0.f, 800.f, "%.1f");
+		ImGui::DragFloat("scaleX", &pScale.x, 0.1f, 0.f, 800.f, "%.1f");
 		ImGui::SameLine();
-		ImGui::DragFloat("Y", &pScale.y, 0.1f, 0.f, 800.f, "%.1f");
+		ImGui::DragFloat("scaleY", &pScale.y, 0.1f, 0.f, 800.f, "%.1f");
 		p->transform->SetScale(pScale);
 		
 		float pRotation = p->transform->GetRotation();
@@ -82,8 +83,19 @@ int main()
 		ImGui::DragFloat("Angle", &pRotation, 0.1f, 0.f, 800.f, "%.1f");
 		p->transform->SetRotation(pRotation);
 
+		float igColor[4];
+		ImGui::Text("Color : ");
+		ImGui::ColorEdit4("asas", igColor);
+
 
 		ImGui::End();
+
+
+	
+
+
+
+
 
 
 		// Update every entity components
@@ -95,8 +107,8 @@ int main()
 		newScene->Render(window);
 
 
-		window.display();
 		ImGui::SFML::Render(window);
+		window.display();
 	}
 
 	ImGui::SFML::Shutdown(window);
