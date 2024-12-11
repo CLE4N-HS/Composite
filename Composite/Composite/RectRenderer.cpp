@@ -1,6 +1,11 @@
 #include "RectRenderer.h"
 #include "Entity.h"
 
+#ifdef USING_IMGUI
+namespace ig = ImGui;
+#endif // USING_IMGUI
+
+
 RectRenderer::RectRenderer() : RectRenderer(sf::Color())
 {
 }
@@ -37,3 +42,20 @@ void RectRenderer::Render(sf::RenderTarget& _renderTarget)
 
 	_renderTarget.draw(m_rect);
 }
+
+#ifdef USING_IMGUI
+void RectRenderer::OnImGuiRender()
+{
+	if (ig::CollapsingHeader("RectRenderer", ImGuiTreeNodeFlags_DefaultOpen))
+	{
+		ig::Text("Color :");
+	
+		//ig::Text("Position :");
+		//ig::DragFloat2("##Position", &m_Pos.x, 1.f);
+		//ig::Text("Scale :");
+		//ig::DragFloat2("##Scale", &m_Scale.x, 0.1f);
+		//ig::Text("Rotation :");
+		//ig::DragFloat("##Rotation", &m_Rotation, 1.f, 0.f, 360.f);
+	}
+}
+#endif // USING_IMGUi

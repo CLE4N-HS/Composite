@@ -86,9 +86,13 @@ public:
 		}
 	}
 
+	inline const std::string GetName() const { return m_name; }
+	inline void SetName(const std::string& _name) { m_name = _name; }
+
 	TransformComponent* transform = nullptr;
 
 private:
 	std::vector<Component*> m_Component;
+	std::string m_name = "";
 
 };

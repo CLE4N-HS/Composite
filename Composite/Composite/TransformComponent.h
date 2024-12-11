@@ -21,6 +21,10 @@ public:
 
 	virtual void Update() override;
 
+#ifdef USING_IMGUI
+	virtual void OnImGuiRender() override;
+#endif // USING_IMGUI
+
 	//inline void SetPos(const Vec2& _pos) { m_Pos = _pos; }
 	//inline void SetPos(const float& _posX, const float& _posY) { m_Pos.x = _posX; m_Pos.y = _posY; }
 	//

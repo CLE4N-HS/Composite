@@ -1,5 +1,5 @@
 #include "SecondComponent.h"
 
-void SecondComponent::Update()
-{
-}
+//void SecondComponent::Update()
+//{
+//}

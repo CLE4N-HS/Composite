@@ -27,3 +27,20 @@ void CircleRenderer::Render(sf::RenderTarget& _renderTarget)
 {
 	_renderTarget.draw(m_circ);
 }
+
+#ifdef USING_IMGUI
+namespace ig = ImGui;
+
+void CircleRenderer::OnImGuiRender()
+{
+	if (ig::CollapsingHeader("CircleRenderer", ImGuiTreeNodeFlags_DefaultOpen))
+	{
+		//ig::Text("Position :");
+		//ig::DragFloat2("##Position", &m_Pos.x, 1.f);
+		//ig::Text("Scale :");
+		//ig::DragFloat2("##Scale", &m_Scale.x, 0.1f);
+		//ig::Text("Rotation :");
+		//ig::DragFloat("##Rotation", &m_Rotation, 1.f, 0.f, 360.f);
+	}
+}
+#endif // USING_IMGUI
