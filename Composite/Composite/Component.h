@@ -6,6 +6,7 @@
 #include "imgui-SFML.h"
 #endif // USING_IMGUI
 
+#include "Externals/json.hpp"
 
 class Entity;
 
@@ -24,6 +25,8 @@ public:
 	virtual void OnImGuiRender() = 0;
 #endif // USING_IMGUI
 
+	virtual nlohmann::json ToJson() = 0;
+	virtual void FromJson(const nlohmann::json& _json) = 0;
 
 protected:
 	Entity* m_owner = nullptr;

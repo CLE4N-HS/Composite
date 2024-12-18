@@ -20,6 +20,11 @@ void Editor::Render(Scene& _scene)
 
 	ig::Begin("Entities");
 
+	if (ig::Button("Create"))
+	{
+		_scene.CreateEntity(sf::Vector2f(), sf::Vector2f(), 0.f);
+	}
+
 	ig::Separator();
 
 	for (Entity* entity : _scene.GetEntities())

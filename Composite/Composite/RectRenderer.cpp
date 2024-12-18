@@ -50,6 +50,18 @@ void RectRenderer::OnImGuiRender()
 	{
 		ig::Text("Color :");
 	
+		// TODO CLEAN THIS
+		float c[4];
+		c[0] = m_color.r;
+		c[1] = m_color.g;
+		c[2] = m_color.b;
+		c[3] = m_color.a;
+		ig::ColorPicker4("Color", c, ImGuiColorEditFlags_::ImGuiColorEditFlags_Uint8);
+		m_color.r = c[0];
+		m_color.g = c[1];
+		m_color.b = c[2];
+		m_color.a = c[3];
+
 		//ig::Text("Position :");
 		//ig::DragFloat2("##Position", &m_Pos.x, 1.f);
 		//ig::Text("Scale :");
@@ -59,3 +71,12 @@ void RectRenderer::OnImGuiRender()
 	}
 }
 #endif // USING_IMGUi
+
+nlohmann::json RectRenderer::ToJson()
+{
+	return nlohmann::json();
+}
+
+void RectRenderer::FromJson(const nlohmann::json& _json)
+{
+}

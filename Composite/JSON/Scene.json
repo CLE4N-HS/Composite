@@ -1,0 +1,21 @@
+{
+    "entities": [
+        {
+            "Component": {
+                "RectRenderer": null,
+                "TransformComponent": {
+                    "position": [
+                        76.0,
+                        73.0
+                    ],
+                    "rotation": 58.0,
+                    "scale": [
+                        7.400000095367432,
+                        5.0
+                    ]
+                }
+            },
+            "name": "Entity_0"
+        }
+    ]
+}

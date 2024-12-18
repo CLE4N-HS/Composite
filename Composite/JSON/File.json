@@ -1,0 +1,9 @@
+{
+    "bool": true,
+    "scalar": 0.5,
+    "string": "Plouf",
+    "vector": [
+        50.0,
+        100.0
+    ]
+}

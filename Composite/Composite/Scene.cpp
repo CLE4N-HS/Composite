@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "RenderComponent.h"
+#include <fstream>
 
 Scene::Scene()
 {
@@ -32,6 +33,45 @@ void Scene::Render(sf::RenderTarget& _renderTarget)
 		{
 			renderComp->Render(_renderTarget);
 		}
+	}
+}
+
+void Scene::Save()
+{
+	nlohmann::json j;
+	
+	for (Entity* entity : m_Entities)
+	{
+		j["entities"].push_back(entity->ToJson());
+	}
+
+	std::ofstream file("../JSON/Scene.json");
+
+	if (file.is_open())
+	{
+		file << j.dump(4);
+
+		file.close();
+	}
+}
+
+void Scene::Load()
+{
+	std::ifstream file("../JSON/Scene.json");
+
+	if (file.is_open())
+	{
+		nlohmann::json j;
+
+		file >> j;
+		
+		for (nlohmann::json& entityJson : j["entities"])
+		{
+			Entity* newEntity = CreateEntity(sf::Vector2f(), sf::Vector2f(), 0.f);
+			newEntity->FromJson(entityJson);
+		}
+
+		file.close();
 	}
 }
 

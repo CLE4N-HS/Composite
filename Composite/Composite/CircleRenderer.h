@@ -15,6 +15,9 @@ public:
 	virtual void OnImGuiRender() override;
 #endif // USING_IMGUI
 
+	virtual nlohmann::json ToJson() override;
+	virtual void FromJson(const nlohmann::json& _json) override;
+
 private:
 	sf::CircleShape m_circ = sf::CircleShape();
 

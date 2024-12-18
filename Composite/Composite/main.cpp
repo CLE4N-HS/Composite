@@ -19,21 +19,56 @@
 
 int main()
 {
+	/*
+	std::ofstream file("../JSON/File.json");
+	
+	if (file.is_open())
+	{
+		nlohmann::json json;
+
+		json["string"] = "Plouf";
+		json["bool"] = true;
+		json["scalar"] = 0.5f;
+		json["vector"] = { 50.f, 100.f };
+
+		file << json.dump(4);
+
+		file.close();
+	}
+
+	std::ifstream iFile("../JSON/File.json");
+
+	if (iFile.is_open())
+	{
+		nlohmann::json json;
+
+		iFile >> json;
+
+		iFile.close();
+
+		std::cout << "String : " << json["string"] << std::endl;
+		std::cout << "Bool : "   << json["bool"]   << std::endl;
+		std::cout << "Scalar : " << json["scalar"] << std::endl;
+		std::cout << "Vector : " << json["vector"][0] << " / " << json["vector"][1] << std::endl;
+	}
+	*/
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Composite");
 
 	GameScene* newScene = new GameScene();
 
+	newScene->Load();
+
 	//newScene->CreateEntity<Entity>(Vec2(50.f, 50.f), Vec2(60.f, 40.f), 0.f);
 	//newScene->CreateEntity<Entity>(Vec2(150.f, 150.f), Vec2(40.f, 40.f), 50.f);
-	newScene->CreateEntity(sf::Vector2f(200.f, 200.f), sf::Vector2f(60.f, 60.f), 0.f);
-	newScene->CreateEntity(sf::Vector2f(600.f, 200.f), sf::Vector2f(60.f, 60.f), 50.f);
-	newScene->CreateEntity(sf::Vector2f(400.f, 400.f), sf::Vector2f(120.f, 120.f), 50.f);
-
-	newScene->GetEntity<Entity>(0)->AddComponent<RectRenderer>(sf::Color(255, 255, 0));
-	newScene->GetEntity<Entity>(1)->AddComponent<RectRenderer>(sf::Color(255, 0, 255));
-	newScene->GetEntity<Entity>(2)->AddComponent<CircleRenderer>(sf::Color(255, 0, 255));
-
-	newScene->GetEntity<Entity>(0)->GetComponent<RenderComponent>()->SetColor(sf::Color(255, 0, 0));
+	//newScene->CreateEntity(sf::Vector2f(200.f, 200.f), sf::Vector2f(60.f, 60.f), 0.f);
+	//newScene->CreateEntity(sf::Vector2f(600.f, 200.f), sf::Vector2f(60.f, 60.f), 50.f);
+	//newScene->CreateEntity(sf::Vector2f(400.f, 400.f), sf::Vector2f(120.f, 120.f), 50.f);
+	//
+	//newScene->GetEntity<Entity>(0)->AddComponent<RectRenderer>(sf::Color(255, 255, 0));
+	//newScene->GetEntity<Entity>(1)->AddComponent<RectRenderer>(sf::Color(255, 0, 255));
+	//newScene->GetEntity<Entity>(2)->AddComponent<CircleRenderer>(sf::Color(255, 0, 255));
+	//
+	//newScene->GetEntity<Entity>(0)->GetComponent<RenderComponent>()->SetColor(sf::Color(255, 0, 0));
 
 #ifdef USING_IMGUI
 	ImGui::SFML::Init(window);
@@ -136,6 +171,7 @@ int main()
 	ImGui::SFML::Shutdown(window);
 #endif // USING_IMGUI
 
+	newScene->Save();
 
 	return 0;
 	

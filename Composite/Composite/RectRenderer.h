@@ -16,6 +16,9 @@ public:
 	virtual void OnImGuiRender() override;
 #endif // USING_IMGUI
 
+	virtual nlohmann::json ToJson() override;
+	virtual void FromJson(const nlohmann::json& _json) override;
+
 protected:
 	sf::RectangleShape m_rect = sf::RectangleShape();
 

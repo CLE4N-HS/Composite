@@ -86,6 +86,9 @@ public:
 		}
 	}
 
+	nlohmann::json ToJson();
+	void FromJson(const nlohmann::json& _json);
+
 	inline const std::string GetName() const { return m_name; }
 	inline void SetName(const std::string& _name) { m_name = _name; }
 

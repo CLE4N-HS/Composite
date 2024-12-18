@@ -50,6 +50,9 @@ public:
 		return m_Entities;
 	}
 
+	void Save();
+	void Load();
+
 	void DestroyEntity(int _index);
 
 	void DestroyEntity(Entity* _entity);

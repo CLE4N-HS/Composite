@@ -25,6 +25,9 @@ public:
 	virtual void OnImGuiRender() override;
 #endif // USING_IMGUI
 
+	virtual nlohmann::json ToJson() override;
+	virtual void FromJson(const nlohmann::json& _json) override;
+
 	//inline void SetPos(const Vec2& _pos) { m_Pos = _pos; }
 	//inline void SetPos(const float& _posX, const float& _posY) { m_Pos.x = _posX; m_Pos.y = _posY; }
 	//

@@ -42,6 +42,24 @@ void TransformComponent::OnImGuiRender()
 }
 #endif // USING_IMGUI
 
+nlohmann::json TransformComponent::ToJson()
+{
+	nlohmann::json j;
+
+	j["position"] = { m_Pos.x, m_Pos.y };
+	j["scale"] = { m_Scale.x, m_Scale.y };
+	j["rotation"] = m_Rotation;
+
+	return j;
+}
+
+void TransformComponent::FromJson(const nlohmann::json& _json)
+{
+	m_Pos = sf::Vector2f(_json["position"][0], _json["position"][1]);
+	m_Scale = sf::Vector2f(_json["scale"][0], _json["scale"][1]);
+	m_Rotation = _json["rotation"];
+}
+
 //void TransformComponent::Move(const Vec2& _pos)
 //{
 //	m_Pos.x += _pos.x;

@@ -44,3 +44,12 @@ void CircleRenderer::OnImGuiRender()
 	}
 }
 #endif // USING_IMGUI
+
+nlohmann::json CircleRenderer::ToJson()
+{
+	return nlohmann::json();
+}
+
+void CircleRenderer::FromJson(const nlohmann::json& _json)
+{
+}
